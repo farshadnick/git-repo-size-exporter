@@ -1,18 +1,20 @@
-# Use a lightweight Python image
-FROM python:3.9-slim
+FROM python:3.11-alpine
 
 # Set working directory
 WORKDIR /app
 
-# Copy the Python script into the container
-COPY . /app
-
-# Install necessary Python dependencies
+# Install dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy the source code
+COPY . .
 
-# Expose the port the app runs on
-EXPOSE 9100
+# Expose the port (make sure this matches your app)
+EXPOSE 9400
 
-# Run the Python application
+# Set the environment variable for Flask
+ENV FLASK_APP=main.py
+
+# Run the application
 CMD ["python", "main.py"]
