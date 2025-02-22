@@ -71,9 +71,8 @@ gitlab_project_size_mb{project="android-app"} 823.47
 Step 4: Add Your Endpoint in Prometheus
 
 To make Prometheus scrape metrics from your Flask exporter, follow these steps:
-
-    Edit the Prometheus Configuration File (prometheus.yml)
-    Add the following job under scrape_configs:
+Edit the Prometheus Configuration File (prometheus.yml)
+Add the following job under scrape_configs:
 ```
     scrape_configs:
   - job_name: 'gitlab_project_metrics'
