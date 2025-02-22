@@ -29,3 +29,21 @@ docker run -it -p 9400:9400 -e GITLAB_ACCESS_TOKEN="XXX" -e GITLAB_URL=https://g
 ```
 
 Replace XXX with your GitLab access token. The exporter will be available on http://localhost:9400 for Prometheus scraping.
+
+Step 3: Verify It
+Result:
+
+After running the container and accessing the metrics endpoint, the logs should appear as follows:
+2025-02-22 09:13:21,929 - INFO - [Port: 9400] - Fetching project list from GitLab...
+2025-02-22 09:13:21,929 - INFO - [Port: 9400] - Starting Flask app on port 9400...
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+ * Serving Flask app 'main'
+ * Debug mode: off
+2025-02-22 09:13:21,931 - INFO - [Port: 9400] - WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9400
+ * Running on http://172.17.0.2:9400
+2025-02-22 09:13:21,931 - INFO - [Port: 9400] - Press CTRL+C to quit
+2025-02-22 09:13:31,177 - INFO - [Port: 9400] - No more projects found.
+2025-02-22 09:13:31,177 - INFO - [Port: 9400] - Total projects fetched: **402**
+2025-02-22 09:13:31,180 - INFO - [Port: 9400] - Sleeping for 10 minutes before next fetch...
