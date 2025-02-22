@@ -9,7 +9,7 @@ from flask import Flask, Response
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # GitLab API Settings from environment variables
-GITLAB_URL = os.getenv("GITLAB_URL", "https://gitlab.huemer-it.com")  # Default URL if not set
+GITLAB_URL = os.getenv("GITLAB_URL", "https://gitlab.example.com")  # Default URL if not set
 ACCESS_TOKEN = os.getenv("GITLAB_ACCESS_TOKEN", "XXXXXXX")  # Default token if not set
 
 if not ACCESS_TOKEN:
