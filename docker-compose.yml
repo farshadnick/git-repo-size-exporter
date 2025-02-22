@@ -1,10 +1,11 @@
 version: '3'
 services:
   git-size:
-    image: git-size:3
-    container_name: git-size
+    image: farshadnikfetrat/gitrepo-size-exporter:latest
+    container_name: gitrepo-size-exp
     ports:
       - "9100:9100"
     environment:
       - GITLAB_ACCESS_TOKEN=XXX5
+      - GITLAB_URL=https://gitlab.example.com
     restart: unless-stopped
