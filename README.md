@@ -34,6 +34,7 @@ Step 3: Verify It
 Result:
 
 After running the container and accessing the metrics endpoint, the logs should appear as follows:
+```
 2025-02-22 09:13:21,929 - INFO - [Port: 9400] - Fetching project list from GitLab...
 2025-02-22 09:13:21,929 - INFO - [Port: 9400] - Starting Flask app on port 9400...
  * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
@@ -47,3 +48,35 @@ After running the container and accessing the metrics endpoint, the logs should 
 2025-02-22 09:13:31,177 - INFO - [Port: 9400] - No more projects found.
 2025-02-22 09:13:31,177 - INFO - [Port: 9400] - Total projects fetched: **402**
 2025-02-22 09:13:31,180 - INFO - [Port: 9400] - Sleeping for 10 minutes before next fetch...
+```
+
+ metrics be like ( in mg ) :
+
+curl http://127.0.0.1:9400/metrics
+
+```
+
+gitlab_project_size_mb{project="website-backend"} 16310.41
+gitlab_project_size_mb{project="mobile-app-server"} 13141.92
+gitlab_project_size_mb{project="desktop-client"} 6823.5
+gitlab_project_size_mb{project="security-suite"} 5752.24
+gitlab_project_size_mb{project="api-gateway"} 4281.25
+gitlab_project_size_mb{project="ai-integration"} 1180.86
+gitlab_project_size_mb{project="user-dashboard"} 1132.02
+gitlab_project_size_mb{project="ecommerce-platform"} 915.32
+gitlab_project_size_mb{project="ios-app"} 913.61
+gitlab_project_size_mb{project="android-app"} 823.47
+
+```
+Step 4: Add Your Endpoint in Prometheus
+
+To make Prometheus scrape metrics from your Flask exporter, follow these steps:
+
+    Edit the Prometheus Configuration File (prometheus.yml)
+    Add the following job under scrape_configs:
+```
+    scrape_configs:
+  - job_name: 'gitlab_project_metrics'
+    static_configs:
+      - targets: ['your-exporter-host:9400']
+```
