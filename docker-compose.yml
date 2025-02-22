@@ -1,0 +1,10 @@
+version: '3'
+services:
+  git-size:
+    image: git-size:3
+    container_name: git-size
+    ports:
+      - "9100:9100"
+    environment:
+      - GITLAB_ACCESS_TOKEN=XXX5
+    restart: unless-stopped
