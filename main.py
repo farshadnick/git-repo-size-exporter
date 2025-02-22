@@ -5,8 +5,14 @@ import time
 import os
 from flask import Flask, Response
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+# Read port from environment variable, default to 9400
+PORT = int(os.getenv("PORT", 9400))
+
+# Configure logging to include the port dynamically
+logging.basicConfig(
+    level=logging.INFO,
+    format=f"%(asctime)s - %(levelname)s - [Port: {PORT}] - %(message)s"
+)
 
 # GitLab API Settings from environment variables
 GITLAB_URL = os.getenv("GITLAB_URL", "https://gitlab.example.com")  # Default URL if not set
@@ -84,4 +90,6 @@ def prometheus_metrics():
     return Response("\n".join(metrics), mimetype="text/plain")
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=9400)
+    logging.info(f"Starting Flask app on port {PORT}...")
+    app.run(host='0.0.0.0', port=PORT)
+
