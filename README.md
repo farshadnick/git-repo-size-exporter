@@ -25,7 +25,7 @@ Step 2: Run the Exporter
 Once your access token is ready, you can run the exporter using Docker. Here's how to start it:
 
 ```
-docker run -it -p 9400:9400 -e GITLAB_ACCESS_TOKEN="XXX" farshadnikfetrat/gitrepo-size-exporter:1
+docker run -it -p 9400:9400 -e GITLAB_ACCESS_TOKEN="XXX" -e GITLAB_URL=https://gitlab.example.com farshadnikfetrat/gitrepo-size-exporter:1
 ```
 
 Replace XXX with your GitLab access token. The exporter will be available on http://localhost:9400 for Prometheus scraping.
